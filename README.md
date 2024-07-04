@@ -14,7 +14,7 @@ After cloning the repository to your local device,
 ## QA Process
 
 For the dev
-1. PR has been approved and merged into dev
+1. PR needs to have been approved and merged into dev
 2. We have added a subsection to the description of the task with detailed information of the expected behavior for the feature we worked on
 3. Moved our task in ClickUp to the QA column
 4. Add a comment saying that the feature is ready to be tested.
