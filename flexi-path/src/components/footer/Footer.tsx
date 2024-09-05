@@ -1,35 +1,25 @@
+import { useContext } from 'react';
 import { Box, LinearProgress } from '@mui/material';
+import { QuizStateContext } from '../../context/QuizStateContext';
 import NextBtn from '../buttons/next-btn/NextBtn';
 import BackBtn from '../buttons/back-btn/BackBtn';
 import GetStartedBtn from '../buttons/get-started-btn/GetStartedBtn';
 import FooterStyles from './FooterStyles';
 
-type FooterProps = {
-  quizStart: boolean;
-  handleStartQuiz: () => void;
-  handleBackPage: () => void;
-  handleNextPage: () => void;
-  progress: number;
-};
-
-export default function Footer({
-  quizStart,
-  handleStartQuiz,
-  handleBackPage,
-  handleNextPage,
-  progress,
-}: FooterProps) {
+export default function Footer() {
   const styles = FooterStyles();
+  const { quizState, handleStartQuiz, handleNextPage, handleBackPage } =
+    useContext(QuizStateContext);
 
   return (
     <Box sx={styles.footer}>
       <LinearProgress
         variant="determinate"
-        value={progress}
+        value={quizState.progress}
         sx={styles.progressBar}
       />
       <Box sx={styles.buttonContainer}>
-        {quizStart ? (
+        {quizState.quizStart ? (
           <>
             <Box sx={styles.backButton}>
               <BackBtn handleBackPage={handleBackPage} />

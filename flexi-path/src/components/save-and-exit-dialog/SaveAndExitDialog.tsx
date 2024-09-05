@@ -1,26 +1,18 @@
+import { useContext } from 'react';
 import { Button, Dialog, DialogActions, DialogTitle } from '@mui/material';
+import { QuizStateContext } from '../../context/QuizStateContext';
 import SaveAndExitDialogStyles from './SaveAndExitDialogStyles';
 
-type SaveAndExitDialogProps = {
-  open: boolean;
-  setDialogOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  handleEndQuiz: () => void;
-};
+export default function SaveAndExitDialog() {
+  const { handleEndQuiz, dialogOpen, setDialogOpen } =
+    useContext(QuizStateContext);
 
-export default function SaveAndExitDialog({
-  open,
-  setDialogOpen,
-  handleEndQuiz,
-}: SaveAndExitDialogProps) {
   const styles = SaveAndExitDialogStyles();
-  const handleClose = () => {
-    setDialogOpen(false);
-  };
 
   return (
     <Dialog
-      open={open}
-      onClose={handleClose}
+      open={dialogOpen}
+      onClose={() => setDialogOpen(false)}
       sx={styles.dialogContainer}
       aria-labelledby="dialog-title"
     >
@@ -28,7 +20,10 @@ export default function SaveAndExitDialog({
         {'Are you certain you wish to save and exit?'}
       </DialogTitle>
       <DialogActions sx={styles.dialogBtnContainer}>
-        <Button sx={styles.dialogCancelBtn} onClick={handleClose}>
+        <Button
+          sx={styles.dialogCancelBtn}
+          onClick={() => setDialogOpen(false)}
+        >
           No, Cancel
         </Button>
         <Button sx={styles.dialogSaveBtn} onClick={handleEndQuiz} autoFocus>

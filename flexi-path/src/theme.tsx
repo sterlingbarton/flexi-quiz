@@ -36,6 +36,7 @@ let theme = createTheme({
           width: '10rem',
           height: '2.5rem',
           flexShrink: 0,
+          fontWeight: 600,
           '&:hover': {
             backgroundColor: '#1046A0',
             color: '#FFF',

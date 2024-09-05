@@ -2,19 +2,17 @@ import { Button } from '@mui/material';
 import SaveAndExitBtnStyles from './SaveAndExitBtnStyles';
 
 type SaveAndExitBtnProps = {
-  handleDialogOpen: () => void;
+  setDialogOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export default function SaveAndExitBtn({
-  handleDialogOpen,
-}: SaveAndExitBtnProps) {
+export default function SaveAndExitBtn({ setDialogOpen }: SaveAndExitBtnProps) {
   const styles = SaveAndExitBtnStyles();
 
   return (
     <Button
       variant="outlined"
       sx={styles.saveAndExitBtn}
-      onClick={handleDialogOpen}
+      onClick={() => setDialogOpen(true)}
     >
       save & exit
     </Button>

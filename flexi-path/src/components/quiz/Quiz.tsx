@@ -1,20 +1,14 @@
+import { useContext } from 'react';
 import { Box, Typography, Grid } from '@mui/material';
+import { QuizStateContext } from '../../context/QuizStateContext';
 import Card from '../card/Card';
 import QuizStyles from './QuizStyles';
-import { QuizData } from '../../data';
 
-type QuizProps = {
-  currentQuestion: QuizData;
-  handleAnswerSelect: (index: number) => void;
-  selectedAnswers: number[];
-};
-
-export default function Quiz({
-  currentQuestion,
-  handleAnswerSelect,
-  selectedAnswers,
-}: QuizProps) {
+export default function Quiz() {
+  const { currentQuestion, handleAnswerSelect, currentSelectedAnswers } =
+    useContext(QuizStateContext);
   const styles = QuizStyles();
+
   const totalAnswers = currentQuestion.longAnswers.length;
   const orientation = currentQuestion.orientation;
 
@@ -47,7 +41,7 @@ export default function Quiz({
                 body={answer}
                 emoji={currentQuestion.emojis?.[answerIndex]}
                 handleAnswerSelect={() => handleAnswerSelect(answerIndex)}
-                isSelected={selectedAnswers.includes(answerIndex)}
+                isSelected={currentSelectedAnswers?.includes(answerIndex)}
               />
             </Grid>
           )

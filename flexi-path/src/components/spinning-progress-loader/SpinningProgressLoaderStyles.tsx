@@ -1,26 +1,26 @@
 const SpinningProgressLoaderStyles = () => {
   const styles = {
     container: {
-      position: 'relative',
-      display: 'inline-flex',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
     },
     progressLoader: {
       color: '#b1d4fd',
     },
     contentsContainer: {
-      position: 'absolute',
       display: 'flex',
+      flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center',
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0,
+      position: 'absolute',
+    },
+    icon: {
+      fontSize: '2.5rem',
+      color: '#b1d4fd',
     },
     value: {
-      position: 'absolute',
-      textAlign: 'center',
-      fontSize: '3rem',
+      fontSize: '2rem',
       color: '#b1d4fd',
     },
   };
