@@ -1,13 +1,11 @@
+import { useContext } from 'react';
 import { Button } from '@mui/material';
+import { QuizStateContext } from '../../../context/QuizStateContext';
 import SaveAndExitBtnStyles from './SaveAndExitBtnStyles';
 
-type SaveAndExitBtnProps = {
-  setDialogOpen: React.Dispatch<React.SetStateAction<boolean>>;
-};
-
-export default function SaveAndExitBtn({ setDialogOpen }: SaveAndExitBtnProps) {
+export default function SaveAndExitBtn() {
+  const { setDialogOpen } = useContext(QuizStateContext);
   const styles = SaveAndExitBtnStyles();
-
   return (
     <Button
       variant="outlined"

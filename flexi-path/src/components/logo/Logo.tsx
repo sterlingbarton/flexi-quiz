@@ -1,13 +1,12 @@
+import { useContext } from 'react';
 import { Box } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import { QuizStateContext } from '../../context/QuizStateContext';
 import LogoImage from '../../assets/logo-image.png';
 import LogoStyles from './LogoStyles';
 
-type LogoProps = {
-  handleEndQuiz: () => void;
-};
-
-export default function Logo({ handleEndQuiz }: LogoProps) {
+export default function Logo() {
+  const { handleEndQuiz } = useContext(QuizStateContext);
   const navigate = useNavigate();
   const styles = LogoStyles();
 

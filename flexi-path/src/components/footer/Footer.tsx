@@ -8,8 +8,7 @@ import FooterStyles from './FooterStyles';
 
 export default function Footer() {
   const styles = FooterStyles();
-  const { quizState, handleStartQuiz, handleNextPage, handleBackPage } =
-    useContext(QuizStateContext);
+  const { quizState } = useContext(QuizStateContext);
 
   return (
     <Box sx={styles.footer}>
@@ -22,15 +21,15 @@ export default function Footer() {
         {quizState.quizStart ? (
           <>
             <Box sx={styles.backButton}>
-              <BackBtn handleBackPage={handleBackPage} />
+              <BackBtn />
             </Box>
             <Box sx={styles.nextButton}>
-              <NextBtn handleNextPage={handleNextPage} />
+              <NextBtn />
             </Box>
           </>
         ) : (
           <Box sx={styles.getStartedButton}>
-            <GetStartedBtn handleStartQuiz={handleStartQuiz} />
+            <GetStartedBtn />
           </Box>
         )}
       </Box>

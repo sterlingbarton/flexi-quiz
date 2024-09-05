@@ -1,11 +1,10 @@
+import { useContext } from 'react';
 import { Button } from '@mui/material';
+import { QuizStateContext } from '../../../context/QuizStateContext';
 import GetStartedBtnStyles from './GetStartedBtnStyles';
 
-type GetStartedBtnProps = {
-  handleStartQuiz: () => void;
-};
-
-export default function GetStartedBtn({ handleStartQuiz }: GetStartedBtnProps) {
+export default function GetStartedBtn() {
+  const { handleStartQuiz } = useContext(QuizStateContext);
   const styles = GetStartedBtnStyles();
   return (
     <Button

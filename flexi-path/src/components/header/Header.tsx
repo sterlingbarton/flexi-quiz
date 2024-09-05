@@ -10,8 +10,7 @@ import SignUpBtn from '../buttons/sign-up-btn/SignUpBtn';
 
 export default function Header() {
   const styles = HeaderStyles();
-  const { quizState, handleEndQuiz, setDialogOpen } =
-    useContext(QuizStateContext);
+  const { quizState } = useContext(QuizStateContext);
 
   const [anchorElement, setAnchorElement] = useState<null | HTMLElement>(null);
 
@@ -21,9 +20,9 @@ export default function Header() {
   return (
     <Box sx={styles.headerContainer}>
       <Box sx={styles.mainContent}>
-        <Logo handleEndQuiz={handleEndQuiz} />
+        <Logo />
         {quizState.quizStart ? (
-          <SaveAndExitBtn setDialogOpen={setDialogOpen} />
+          <SaveAndExitBtn />
         ) : (
           <Box>
             <Box sx={styles.smallDisplayContainer}>

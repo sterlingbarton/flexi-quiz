@@ -187,29 +187,6 @@ export const QuizStateProvider = ({ children }: QuizStateContextProps) => {
     );
   };
 
-  // const {
-  //   quizState,
-  //   setQuizState,
-  //   quizData,
-  //   setQuizData,
-  //   handleStartQuiz,
-  //   handleEndQuiz,
-  //   handleNextPage,
-  //   handleBackPage,
-  //   isLoading,
-  //   setIsLoading,
-  //   dialogOpen,
-  //   setDialogOpen,
-  //   currentQuestion,
-  //   totalQuestions,
-  //   totalPages,
-  //   halfway,
-  //   handleAnswerSelect,
-  //   selectedAnswers,
-  //   setSelectedAnswers,
-  //   currentSelectedAnswers,
-  // } = useContext(QuizStateContext);
-
   return (
     <QuizStateContext.Provider
       value={{
