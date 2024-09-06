@@ -5,8 +5,8 @@ import { QuizStateContext } from '../../context/QuizStateContext';
 import Logo from '../logo/Logo';
 import SaveAndExitBtn from '../buttons/save-and-exit-btn/SaveAndExitBtn';
 import HeaderStyles from './HeaderStyles';
-import LogInBtn from '../buttons/log-in-btn/LogInBtn';
-import SignUpBtn from '../buttons/sign-up-btn/SignUpBtn';
+import { LogInBtn } from '../buttons/log-in-btn/LogInBtn';
+import { SignUpBtn } from '../buttons/sign-up-btn/SignUpBtn';
 
 export default function Header() {
   const styles = HeaderStyles();

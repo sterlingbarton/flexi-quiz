@@ -8,6 +8,9 @@ const LogInBtnStyles = () => {
       mr: { sm: '.75rem' },
       border: { sm: 'none' },
     },
+    darkLogInBtn: {
+      color: theme.palette.common.white,
+    },
   };
   return styles;
 };

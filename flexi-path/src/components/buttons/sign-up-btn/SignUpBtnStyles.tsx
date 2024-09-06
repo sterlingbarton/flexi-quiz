@@ -6,6 +6,10 @@ const SignUpBtnStyles = () => {
     signUpBtn: {
       background: theme.palette.primary.main,
     },
+    darkNavSignUpBtn: {
+      background: theme.palette.common.white,
+      color: theme.palette.primary.main,
+    },
   };
   return styles;
 };
