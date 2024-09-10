@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { DarkLogo } from '../logo/Logo';
 import { DarkNavLogInBtn } from '../buttons/log-in-btn/LogInBtn';
 import { DarkNavSignUpBtn } from '../buttons/sign-up-btn/SignUpBtn';
@@ -11,9 +12,15 @@ import {
   IconButton,
   Menu,
   MenuItem,
+  Button,
 } from '@mui/material';
 
-const pages = ['Why Flexi Path', 'Product', 'Services', 'Resources'];
+const pages = [
+  { label: 'Why Flexi Path', href: '#' },
+  { label: 'Product', href: '#', submenu: ['Sub-product 1', 'Sub-product 2'] },
+  { label: 'Services', href: '#', submenu: ['Service 1', 'Service 2'] },
+  { label: 'Resources', href: '#' },
+];
 
 function ResponsiveAppBar() {
   const [anchorElement, setAnchorElement] = useState<null | HTMLElement>(null);
@@ -44,33 +51,61 @@ function ResponsiveAppBar() {
               display: 'flex',
               flexDirection: 'row',
               justifyContent: 'space-between',
+              alignItems: 'center',
             }}
           >
             <DarkLogo />
             <Box
               sx={{
                 display: { xs: 'none', md: 'flex' },
-                width: '28rem',
+                width: { md: '28rem', lg: '34rem' },
                 ml: '1rem',
               }}
             >
               {pages.map((page) => (
-                <Link
-                  href="#"
-                  key={page}
+                <Box
+                  key={page.label}
                   sx={{
-                    width: '25%',
-                    fontSize: '0.9rem',
-                    color: 'white',
-                    display: 'block',
-                    textAlign: 'center',
-                    '&:hover': {
-                      cursor: 'pointer',
-                    },
+                    width: '100%',
+                    display: 'flex',
+                    alignItems: 'center',
                   }}
                 >
-                  {page}
-                </Link>
+                  {page.submenu ? (
+                    <Button
+                      key={page.label}
+                      variant="text"
+                      endIcon={<ArrowDropDownIcon />}
+                      sx={{
+                        color: 'white',
+                        width: '100%',
+                        fontSize: '0.9rem',
+                        fontWeight: 400,
+                        textAlign: 'center',
+                      }}
+                    >
+                      {page.label}
+                    </Button>
+                  ) : (
+                    <Link
+                      href={page.href}
+                      key={page.label}
+                      sx={{
+                        width: '100%',
+                        fontSize: '0.9rem',
+                        // background: 'pink',
+                        color: 'white',
+                        display: 'block',
+                        textAlign: 'center',
+                        '&:hover': {
+                          cursor: 'pointer',
+                        },
+                      }}
+                    >
+                      {page.label}
+                    </Link>
+                  )}
+                </Box>
               ))}
             </Box>
           </Box>
@@ -114,9 +149,9 @@ function ResponsiveAppBar() {
               >
                 {pages.map((page) => (
                   <MenuItem
-                    key={page}
+                    key={page.label}
                     sx={{
-                      mb: '.25rem',
+                      mt: '.25rem',
                       '&:hover': {
                         background: 'none',
                         textDecoration: 'underline',
@@ -125,7 +160,7 @@ function ResponsiveAppBar() {
                     onClick={handleNavMenuStatus}
                   >
                     <Link
-                      href="#"
+                      href={page.href}
                       sx={{
                         textDecoration: 'none',
                         '&:hover': {
@@ -133,13 +168,13 @@ function ResponsiveAppBar() {
                         },
                       }}
                     >
-                      {page}
+                      {page.label}
                     </Link>
                   </MenuItem>
                 ))}
                 <MenuItem
                   sx={{
-                    mb: '.25rem',
+                    mt: '.25rem',
                     '&:hover': { background: 'none' },
                   }}
                   onClick={handleNavMenuStatus}
@@ -158,7 +193,7 @@ function ResponsiveAppBar() {
                 </MenuItem>
                 <MenuItem
                   sx={{
-                    mb: '.25rem',
+                    my: '.25rem',
                     '&:hover': { background: 'none' },
                   }}
                   onClick={handleNavMenuStatus}
