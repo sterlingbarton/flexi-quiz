@@ -2,7 +2,7 @@ import { useState, useContext } from 'react';
 import { Box, IconButton, Menu, MenuItem } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { QuizStateContext } from '../../context/QuizStateContext';
-import Logo from '../logo/Logo';
+import { Logo } from '../logo/Logo';
 import SaveAndExitBtn from '../buttons/save-and-exit-btn/SaveAndExitBtn';
 import HeaderStyles from './HeaderStyles';
 import { LogInBtn } from '../buttons/log-in-btn/LogInBtn';

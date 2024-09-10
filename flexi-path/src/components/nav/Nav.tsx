@@ -1,31 +1,22 @@
 import React, { useState } from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
-import Button from '@mui/material/Button';
-import MenuItem from '@mui/material/MenuItem';
-import Logo from '../logo/Logo';
-import { DarkNavLogInBtn, LogInBtn } from '../buttons/log-in-btn/LogInBtn';
-import { DarkNavSignUpBtn, SignUpBtn } from '../buttons/sign-up-btn/SignUpBtn';
-import { Typography } from '@mui/material';
+import { DarkLogo } from '../logo/Logo';
+import { DarkNavLogInBtn } from '../buttons/log-in-btn/LogInBtn';
+import { DarkNavSignUpBtn } from '../buttons/sign-up-btn/SignUpBtn';
+import {
+  Link,
+  AppBar,
+  Box,
+  Toolbar,
+  IconButton,
+  Menu,
+  MenuItem,
+} from '@mui/material';
 
 const pages = ['Why Flexi Path', 'Product', 'Services', 'Resources'];
 
 function ResponsiveAppBar() {
   const [anchorElement, setAnchorElement] = useState<null | HTMLElement>(null);
-  const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
-
-  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElNav(event.currentTarget);
-  };
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
 
   const handleNavMenuStatus = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElement(anchorElement ? null : event.currentTarget);
@@ -33,79 +24,63 @@ function ResponsiveAppBar() {
 
   return (
     <AppBar position="static">
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          {/* sm screen menu dropdown */}
-          <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{ display: { xs: 'block', md: 'none' } }}
-            >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Button sx={{ textAlign: 'center' }}>{page}</Button>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-
+      <Box
+        sx={{
+          width: '90%',
+          maxWidth: '1500px',
+          margin: '0 auto',
+        }}
+      >
+        <Toolbar
+          disableGutters
+          sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+          }}
+        >
+          {/* logo & large screen links */}
           <Box
             sx={{
-              flexGrow: 1,
               display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'space-between',
             }}
           >
-            <Logo />
+            <DarkLogo />
+            <Box
+              sx={{
+                display: { xs: 'none', md: 'flex' },
+                width: '28rem',
+                ml: '1rem',
+              }}
+            >
+              {pages.map((page) => (
+                <Link
+                  href="#"
+                  key={page}
+                  sx={{
+                    width: '25%',
+                    fontSize: '0.9rem',
+                    color: 'white',
+                    display: 'block',
+                    textAlign: 'center',
+                    '&:hover': {
+                      cursor: 'pointer',
+                    },
+                  }}
+                >
+                  {page}
+                </Link>
+              ))}
+            </Box>
           </Box>
 
-          {/* large screen buttons */}
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
-              <Typography
-                key={page}
-                sx={{
-                  width: '8rem',
-                  color: 'white',
-                  display: 'block',
-                  textAlign: 'center',
-                  '&:hover': {
-                    cursor: 'pointer',
-                  },
-                }}
-              >
-                {page}
-              </Typography>
-            ))}
-          </Box>
-
-          {/* Log in menu section */}
+          {/* dropdown menu section */}
           <Box>
             <Box
               sx={{
                 flexGrow: 1,
-                display: { xs: 'flex', sm: 'none' },
+                display: { xs: 'flex', md: 'none' },
               }}
             >
               <IconButton
@@ -124,6 +99,7 @@ function ResponsiveAppBar() {
                 keepMounted
                 open={Boolean(anchorElement)}
                 onClose={handleNavMenuStatus}
+                MenuListProps={{ sx: { py: 0, px: '.5rem' } }}
                 sx={{
                   anchorOrigin: {
                     vertical: 'bottom',
@@ -133,37 +109,78 @@ function ResponsiveAppBar() {
                     vertical: 'top',
                     horizontal: 'right',
                   },
-                  display: { xs: 'flex', sm: 'none' },
+                  display: { xs: 'flex', md: 'none' },
                 }}
               >
+                {pages.map((page) => (
+                  <MenuItem
+                    key={page}
+                    sx={{
+                      mb: '.25rem',
+                      '&:hover': {
+                        background: 'none',
+                        textDecoration: 'underline',
+                      },
+                    }}
+                    onClick={handleNavMenuStatus}
+                  >
+                    <Link
+                      href="#"
+                      sx={{
+                        textDecoration: 'none',
+                        '&:hover': {
+                          textDecoration: 'underline',
+                        },
+                      }}
+                    >
+                      {page}
+                    </Link>
+                  </MenuItem>
+                ))}
                 <MenuItem
                   sx={{
-                    justifyContent: 'center',
-                    '&:hover': {
-                      background: 'none',
-                    },
+                    mb: '.25rem',
+                    '&:hover': { background: 'none' },
                   }}
                   onClick={handleNavMenuStatus}
                 >
-                  <LogInBtn />
+                  <Link
+                    href="#"
+                    sx={{
+                      textDecoration: 'none',
+                      '&:hover': {
+                        textDecoration: 'underline',
+                      },
+                    }}
+                  >
+                    Log In
+                  </Link>
                 </MenuItem>
                 <MenuItem
                   sx={{
-                    justifyContent: 'center',
-                    '&:hover': {
-                      background: 'none',
-                    },
+                    mb: '.25rem',
+                    '&:hover': { background: 'none' },
                   }}
                   onClick={handleNavMenuStatus}
                 >
-                  <SignUpBtn />
+                  <Link
+                    href="#"
+                    sx={{
+                      textDecoration: 'none',
+                      '&:hover': {
+                        textDecoration: 'underline',
+                      },
+                    }}
+                  >
+                    Sign Up
+                  </Link>
                 </MenuItem>
               </Menu>
             </Box>
             <Box
               sx={{
                 flexGrow: 1,
-                display: { xs: 'none', sm: 'flex' },
+                display: { xs: 'none', md: 'flex' },
               }}
             >
               <DarkNavLogInBtn />
@@ -171,7 +188,7 @@ function ResponsiveAppBar() {
             </Box>
           </Box>
         </Toolbar>
-      </Container>
+      </Box>
     </AppBar>
   );
 }

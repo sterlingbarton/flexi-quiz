@@ -10,6 +10,7 @@ const LogInBtnStyles = () => {
     },
     darkLogInBtn: {
       color: theme.palette.common.white,
+      width: { md: '7.5rem', lg: '8rem', xl: '9rem' },
     },
   };
   return styles;
