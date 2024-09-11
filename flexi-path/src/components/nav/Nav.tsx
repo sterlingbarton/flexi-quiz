@@ -51,7 +51,7 @@ function ResponsiveAppBar() {
     currentSubmenu: { label: string; href: string }[]
   ) => {
     return (
-      <Box sx={styles.submenuItemContainer}>
+      <Box sx={styles.submenuItemContainer} onClick={handleNavMenuStatus}>
         {currentSubmenu.map((submenuItem) => (
           <Link
             href={submenuItem.href}
@@ -78,20 +78,10 @@ function ResponsiveAppBar() {
             enterNextDelay={75}
             slotProps={{
               tooltip: {
-                sx: {
-                  // tooltip
-                  background: '#FFF',
-                  boxShadow: 3,
-                  px: '.75rem',
-                  py: '.5rem',
-                  textAlign: 'center',
-                },
+                sx: styles.tooltip,
               },
               arrow: {
-                sx: {
-                  // tooltipArrow
-                  color: '#FFF',
-                },
+                sx: styles.tooltipLightArrow,
               },
             }}
           >
@@ -138,18 +128,10 @@ function ResponsiveAppBar() {
             enterNextDelay={75}
             slotProps={{
               tooltip: {
-                sx: {
-                  background: '#FFF',
-                  boxShadow: 3,
-                  px: '.75rem',
-                  py: '.5rem',
-                  textAlign: 'center',
-                },
+                sx: styles.tooltip,
               },
               arrow: {
-                sx: {
-                  color: '#1659CB',
-                },
+                sx: styles.tooltipDarkArrow,
               },
             }}
           >

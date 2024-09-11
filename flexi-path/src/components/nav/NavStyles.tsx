@@ -27,6 +27,12 @@ const NavStyles = () => {
       py: '.5rem',
       textAlign: 'center',
     },
+    tooltipLightArrow: {
+      color: '#FFF',
+    },
+    tooltipDarkArrow: {
+      color: '#1659CB',
+    },
     singleLinkLargeContainer: {
       width: '100%',
       display: 'flex',
