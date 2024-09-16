@@ -13,7 +13,6 @@ import {
   IconButton,
   Menu,
   MenuItem,
-  // Button,
   Tooltip,
   Accordion,
   AccordionSummary,
@@ -146,6 +145,7 @@ function Nav() {
                       // only temporary until we get functioning hrefs
                       onClick={handleResponsiveMenuToggle}
                       href={submenu.href}
+                      sx={styles.menuLink}
                     >
                       {submenu.label}
                     </Link>

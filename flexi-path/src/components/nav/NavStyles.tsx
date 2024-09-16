@@ -85,10 +85,11 @@ const NavStyles = () => {
       py: 0,
       display: 'flex',
       flexDirection: 'column',
-      alignItems: 'flex-start',
+      '& .MuiMenuItem-root': {
+        minHeight: '48px',
+      },
     },
     responsiveMenuContainer: {
-      flexGrow: 1,
       display: { xs: 'flex', md: 'none' },
     },
     responsiveMenu: {
