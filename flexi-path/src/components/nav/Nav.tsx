@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { DarkLogo } from '../logo/Logo';
 import { DarkNavLogInBtn } from '../buttons/log-in-btn/LogInBtn';
@@ -12,8 +13,11 @@ import {
   IconButton,
   Menu,
   MenuItem,
-  Button,
+  // Button,
   Tooltip,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
 } from '@mui/material';
 import NavStyles from './NavStyles';
 
@@ -38,40 +42,40 @@ const pages = [
   { label: 'Resources', href: '#' },
 ];
 
-function ResponsiveAppBar() {
+function Nav() {
   const [anchorElement, setAnchorElement] = useState<null | HTMLElement>(null);
   const styles = NavStyles();
 
   // handle open & close of hamburger menu for small screens
-  const handleNavMenuStatus = (event: React.MouseEvent<HTMLElement>) => {
+  const handleResponsiveMenuToggle = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElement(anchorElement ? null : event.currentTarget);
   };
 
+  // handle rendering items for tooltip menus
   const renderSubmenuItems = (
     currentSubmenu: { label: string; href: string }[]
-  ) => {
-    return (
-      <Box sx={styles.submenuItemContainer} onClick={handleNavMenuStatus}>
-        {currentSubmenu.map((submenuItem) => (
-          <Link
-            href={submenuItem.href}
-            key={submenuItem.label}
-            sx={styles.submenuItem}
-          >
-            {submenuItem.label}
-          </Link>
-        ))}
-      </Box>
-    );
-  };
+  ) => (
+    <Box sx={styles.submenuItemContainer}>
+      {currentSubmenu.map((submenuItem) => (
+        <Link
+          href={submenuItem.href}
+          key={submenuItem.label}
+          sx={styles.submenuItem}
+        >
+          {submenuItem.label}
+        </Link>
+      ))}
+    </Box>
+  );
 
-  const renderNavLinks = () => {
-    return (
-      <Box sx={styles.navLinksLargeContainer}>
-        {pages.map((page) => (
+  // handle displaying links on large screens
+  const renderLargeScreenLinks = () => (
+    <Box sx={styles.navLinksLargeContainer}>
+      {pages.map((page) =>
+        page.submenu ? (
           <Tooltip
             key={page.label}
-            title={page.submenu ? renderSubmenuItems(page.submenu) : ''}
+            title={renderSubmenuItems(page.submenu)}
             placement="bottom"
             arrow
             leaveDelay={50}
@@ -86,79 +90,96 @@ function ResponsiveAppBar() {
             }}
           >
             <Box sx={styles.singleLinkLargeContainer}>
-              {page.submenu ? (
-                <Button
-                  variant="text"
-                  endIcon={<ArrowDropDownIcon />}
-                  disableRipple
-                  sx={styles.dropdownLink}
-                >
-                  {page.label}
-                </Button>
-              ) : (
-                <Link href={page.href} sx={styles.navLink}>
-                  {page.label}
-                </Link>
-              )}
+              <Link href={page.href} sx={styles.dropdownLink}>
+                {page.label}
+                <ArrowDropDownIcon />
+              </Link>
             </Box>
           </Tooltip>
-        ))}
-      </Box>
-    );
-  };
+        ) : (
+          <Box sx={styles.singleLinkLargeContainer} key={page.label}>
+            <Link href={page.href} sx={styles.navLink}>
+              {page.label}
+            </Link>
+          </Box>
+        )
+      )}
+    </Box>
+  );
 
+  // handle render of menu on small screens
   const renderResponsiveMenu = () => {
     return (
       <Menu
-        id="menu-appbar"
+        id="responsive-menu"
+        aria-labelledby="responsive-menu-button"
         anchorEl={anchorElement}
         keepMounted
         open={Boolean(anchorElement)}
-        onClose={handleNavMenuStatus}
-        MenuListProps={{ sx: { py: 0, px: '.5rem' } }}
+        onClose={handleResponsiveMenuToggle}
+        MenuListProps={{
+          sx: styles.menuListProps,
+        }}
         sx={styles.responsiveMenu}
       >
         {pages.map((page) => (
-          <Tooltip
+          <MenuItem
+            disableRipple
+            disableGutters
             key={page.label}
-            title={page.submenu ? renderSubmenuItems(page.submenu) : ''}
-            placement="left"
-            arrow
-            leaveDelay={50}
-            enterNextDelay={75}
-            slotProps={{
-              tooltip: {
-                sx: styles.tooltip,
-              },
-              arrow: {
-                sx: styles.tooltipDarkArrow,
-              },
-            }}
+            sx={styles.menuItemContainer}
           >
-            <MenuItem
-              key={page.label}
-              sx={styles.menuItemContainer}
-              onClick={handleNavMenuStatus}
-            >
-              {page.submenu ? (
-                <Link href={page.href} sx={styles.menuDropdownLink}>
+            {/* render accordion or regular link */}
+            {page.submenu ? (
+              <Accordion disableGutters elevation={0}>
+                <AccordionSummary
+                  expandIcon={<ExpandMoreIcon sx={{ color: '#1659CB' }} />}
+                  aria-controls={`${page.label}-content`}
+                  id={`${page.label}-header`}
+                  sx={styles.accordionSummary}
+                >
                   {page.label}
-                  <ArrowDropDownIcon />
-                </Link>
-              ) : (
-                <Link href={page.href} sx={styles.menuLink}>
-                  {page.label}
-                </Link>
-              )}
-            </MenuItem>
-          </Tooltip>
+                </AccordionSummary>
+                {page.submenu.map((submenu) => (
+                  <AccordionDetails key={submenu.label}>
+                    <Link
+                      // only temporary until we get functioning hrefs
+                      onClick={handleResponsiveMenuToggle}
+                      href={submenu.href}
+                    >
+                      {submenu.label}
+                    </Link>
+                  </AccordionDetails>
+                ))}
+              </Accordion>
+            ) : (
+              <Link
+                sx={styles.menuLink}
+                href={page.href}
+                // only temporary until we get functioning hrefs
+                onClick={handleResponsiveMenuToggle}
+              >
+                {page.label}
+              </Link>
+            )}
+          </MenuItem>
         ))}
-        <MenuItem sx={styles.menuItemContainer} onClick={handleNavMenuStatus}>
+        <MenuItem
+          disableRipple
+          disableGutters
+          sx={styles.menuItemContainer}
+          onClick={handleResponsiveMenuToggle}
+        >
           <Link href="#" sx={styles.menuLink}>
             Log In
           </Link>
         </MenuItem>
-        <MenuItem sx={styles.menuItemContainer} onClick={handleNavMenuStatus}>
+        <MenuItem
+          disableRipple
+          disableGutters
+          sx={styles.menuItemContainer}
+          onClick={handleResponsiveMenuToggle}
+        >
           <Link href="#" sx={styles.menuLink}>
             Sign Up
           </Link>
@@ -168,24 +189,25 @@ function ResponsiveAppBar() {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" elevation={0}>
       <Box sx={styles.navContainer}>
         <Toolbar disableGutters sx={styles.toolbar}>
           {/* logo & large screen section */}
           <Box sx={styles.logoAndLinksContainer}>
             <DarkLogo />
-            {renderNavLinks()}
+            {renderLargeScreenLinks()}
           </Box>
 
           {/* small screen responsive menu, large screen buttons section */}
           <Box>
             <Box sx={styles.responsiveMenuContainer}>
               <IconButton
+                id="responsive-menu-button"
                 size="large"
-                aria-label="Log in sign up menu"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleNavMenuStatus}
+                aria-label="Toggle login/signup menu"
+                aria-controls="responsive-menu"
+                aria-haspopup="menu"
+                onClick={handleResponsiveMenuToggle}
                 color="inherit"
               >
                 <MenuIcon />
@@ -202,4 +224,4 @@ function ResponsiveAppBar() {
     </AppBar>
   );
 }
-export default ResponsiveAppBar;
+export default Nav;
