@@ -5,11 +5,9 @@ import HalfwayMarker from '../halfway-marker/HalfwayMarker';
 import LoadDisplay from '../load-display/LoadDisplay';
 import QuizLayout from '../quiz-layout/QuizLayout';
 import QuizGrid from '../quiz-grid/QuizGrid';
-// import QuizStyles from './QuizStyles';
 
 export default function Quiz() {
   const { quizState, isLoading } = useContext(QuizStateContext);
-  // const styles = QuizStyles();
 
   const renderLayout = () => {
     if (isLoading) return <LoadDisplay />;

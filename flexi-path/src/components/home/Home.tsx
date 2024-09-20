@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { Box, Button, Typography } from '@mui/material';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import Nav from '../nav/Nav';
+import VendorPortalBtn from '../buttons/vendor-portal-btn/VendorPortalBtn';
 import hero from '../../assets/hero.png';
 import HomeStyles from './HomeStyles';
 
@@ -13,13 +13,7 @@ export default function NewHome() {
       <Nav />
       <Box sx={styles.bodyContainer}>
         <Box sx={styles.vendorBtnContainer}>
-          <Button
-            variant="text"
-            endIcon={<ArrowForwardIcon />}
-            sx={styles.vendorBtn}
-          >
-            Vendor Portal
-          </Button>
+          <VendorPortalBtn />
         </Box>
         <Box sx={styles.pageContent}>
           <Box sx={styles.ctaColumn}>
