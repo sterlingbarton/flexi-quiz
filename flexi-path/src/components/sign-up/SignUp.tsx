@@ -4,10 +4,10 @@ import Nav from '../nav/Nav';
 import googleLogo from '../../assets/google-logo.png';
 import facebookLogo from '../../assets/facebook-logo.png';
 import appleLogo from '../../assets/apple-logo.png';
-import LogInStyles from './LogInStyles';
+import SignUpStyles from './SignUpStyles';
 
 export default function LogIn() {
-  const styles = LogInStyles();
+  const styles = SignUpStyles();
   return (
     <Box>
       <Nav />
@@ -17,11 +17,11 @@ export default function LogIn() {
         </Box>
         <Box sx={styles.logInContainer}>
           <Box sx={styles.headingContainer}>
-            <Link sx={styles.signUpLink} href="/sign-up">
-              Don't have an account yet? Sign Up
+            <Link sx={styles.signUpLink} href="/log-in">
+              Have an account? Log in
             </Link>
             <Typography component="h3" sx={styles.heading}>
-              Please Log In
+              Create An Account
             </Typography>
           </Box>
           <Box sx={styles.buttonGroupContainer}>
@@ -39,7 +39,7 @@ export default function LogIn() {
             </Button>
           </Box>
           <Typography component="p" sx={styles.logInPTag}>
-            Or Log In With Email
+            Or Sign Up With Email
           </Typography>
           <Box component="form" sx={styles.logInForm}>
             <TextField
@@ -64,9 +64,9 @@ export default function LogIn() {
                 shrink: true,
               }}
             />
-            {/* log in btn */}
+            {/* create account btn */}
             <Button type="submit" variant="contained" sx={{ width: '100%' }}>
-              Log In
+              Create Account
             </Button>
           </Box>
         </Box>

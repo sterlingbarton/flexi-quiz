@@ -1,6 +1,6 @@
 import { useTheme } from '@mui/material/styles';
 
-const LogInStyles = () => {
+const SignUpStyles = () => {
   const theme = useTheme();
   const styles = {
     pageContainer: {
@@ -30,7 +30,7 @@ const LogInStyles = () => {
       width: '100%',
     },
     signUpLink: {
-      width: '58%',
+      width: '42%',
       fontSize: '0.75rem',
       fontWeight: 400,
       color: theme.palette.common.black,
@@ -39,6 +39,9 @@ const LogInStyles = () => {
       borderRadius: 0,
       textDecoration: 'none',
       mb: '1.25rem',
+      '&:hover': {
+        cursor: 'pointer',
+      },
     },
     heading: { fontSize: '1.25rem', fontWeight: 600 },
     buttonGroupContainer: {
@@ -96,4 +99,4 @@ const LogInStyles = () => {
   return styles;
 };
 
-export default LogInStyles;
+export default SignUpStyles;
