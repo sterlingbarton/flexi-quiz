@@ -9,7 +9,6 @@ const HomeStyles = () => {
       margin: '0 auto',
     },
     vendorBtnContainer: { display: 'flex', justifyContent: 'flex-end' },
-    vendorBtn: { fontSize: '0.7rem' },
     pageContent: {
       display: 'flex',
       width: '100%',
