@@ -3,13 +3,18 @@ import { useTheme } from '@mui/material/styles';
 const ResultsStyles = () => {
   const theme = useTheme();
   const styles = {
-    bodyContainer: {
+    pageContainer: {
+      display: 'flex',
+      flexDirection: 'column',
       width: '100vw',
-      height: '100vh', // this will be changed when we add a nav
+      height: '100vh',
+    },
+    bodyContainer: {
+      flex: 1,
+      width: '100%',
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      flexShrink: 0,
     },
     displayContainer: {
       borderRadius: theme.shape,

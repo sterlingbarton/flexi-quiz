@@ -4,6 +4,7 @@ import ResultsStyles from './ResultsStyles';
 import ResultsDisplay from '../results-display/ResultsDisplay';
 import ResultsNavigation from '../results-navigation/ResultsNavigation';
 import ResultsScoreDisplay from '../results-score-display/ResultsScoreDisplay';
+import Nav from '../nav/Nav';
 
 export default function Results() {
   const styles = ResultsStyles();
@@ -39,16 +40,19 @@ export default function Results() {
   };
 
   return (
-    <Box sx={styles.bodyContainer}>
-      <Container sx={styles.displayContainer}>
-        {components[currentPage]}
-        <ResultsNavigation
-          handleBack={handleBack}
-          handleNext={handleNext}
-          renderDots={renderDots}
-          currentPage={currentPage}
-        />
-      </Container>
+    <Box sx={styles.pageContainer}>
+      <Nav />
+      <Box sx={styles.bodyContainer}>
+        <Container sx={styles.displayContainer}>
+          {components[currentPage]}
+          <ResultsNavigation
+            handleBack={handleBack}
+            handleNext={handleNext}
+            renderDots={renderDots}
+            currentPage={currentPage}
+          />
+        </Container>
+      </Box>
     </Box>
   );
 }
