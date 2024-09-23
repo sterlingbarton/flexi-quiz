@@ -9,56 +9,23 @@ import {
   InputAdornment,
 } from '@mui/material';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
+import EmailStyles from './EmailStyles';
 
 export default function Email() {
+  const styles = EmailStyles();
+
   const [isFocused, setIsFocused] = useState(false);
 
   return (
-    <Box
-      sx={{
-        width: { xs: '90%' },
-        maxWidth: '32rem',
-        height: '25rem',
-        display: 'flex',
-        flexDirection: 'column',
-        // justifyContent: 'space-evenly',
-        alignItems: 'center',
-        margin: '2rem auto 1rem',
-      }}
-    >
-      <Typography
-        component="h3"
-        sx={{
-          color: '#202020',
-          fontSize: '1rem',
-          fontWeight: 600,
-          mb: '2.8rem',
-        }}
-      >
+    <Box sx={styles.emailContainer}>
+      <Typography component="h3" sx={styles.heading}>
         Just a moment...
       </Typography>
-      <Typography
-        component="h4"
-        sx={{
-          color: '#202020',
-          fontSize: '0.875rem',
-          fontWeight: 300,
-          lineHeight: '121.017%',
-          mb: '1.8rem',
-        }}
-      >
+      <Typography component="h4" sx={styles.subheading}>
         Before we move on to your profile, would you like an email copy of your
         results?
       </Typography>
-      <Typography
-        component="p"
-        sx={{
-          color: '#808080',
-          fontSize: '0.75rem',
-          fontWeight: 300,
-          lineHeight: '121.017%',
-        }}
-      >
+      <Typography component="p" sx={styles.sideNote}>
         We'll save your results so you can easily access them again.
       </Typography>
       <Box component="form">
@@ -73,19 +40,15 @@ export default function Email() {
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
-                <EmailOutlinedIcon
-                  sx={{ color: 'rgba(0, 0, 0, 0.30)', fontWeight: 300 }}
-                />
+                <EmailOutlinedIcon sx={styles.emailIcon} />
               </InputAdornment>
             ),
           }}
           InputLabelProps={{
             shrink: isFocused,
             style: {
+              ...styles.inputLabelProps,
               paddingLeft: isFocused ? 0 : '2rem',
-              color: 'rgba(0, 0, 0, 0.30)',
-              fontSize: '1rem',
-              fontWeight: 300,
             },
           }}
           onFocus={() => setIsFocused(true)}
@@ -94,16 +57,9 @@ export default function Email() {
         <FormControlLabel
           control={<Checkbox />}
           label="Send me helpful tips and resources"
-          sx={{
-            mb: '2.3rem',
-            '& .MuiFormControlLabel-label': {
-              fontWeight: 300,
-              color: '#202020',
-              fontSize: '.8rem',
-            },
-          }}
+          sx={styles.checkbox}
         />
-        <Button type="submit" variant="contained" sx={{ width: '100%' }}>
+        <Button type="submit" variant="contained" sx={styles.submitButton}>
           Send Results
         </Button>
       </Box>
