@@ -31,6 +31,13 @@ const ResultsStyles = () => {
         height: '36rem',
       },
     },
+    carousel: {
+      flex: 1,
+      width: '100%',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
     dot: {
       width: 10,
       height: 10,

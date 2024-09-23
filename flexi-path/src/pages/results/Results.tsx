@@ -48,7 +48,7 @@ export default function Results() {
       <Nav />
       <Box sx={styles.bodyContainer}>
         <Container sx={styles.displayContainer}>
-          {components[currentPage]}
+          <Box sx={styles.carousel}>{components[currentPage]}</Box>
           <ResultsNavigation
             handleBack={handleBack}
             handleNext={handleNext}
