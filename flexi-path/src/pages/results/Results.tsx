@@ -6,6 +6,7 @@ import ResultsNavigation from '../../components/results-navigation/ResultsNaviga
 import ResultsScoreDisplay from '../../components/results-score-display/ResultsScoreDisplay';
 import Nav from '../../components/nav/Nav';
 import Email from '../../components/email/Email';
+import AccountPrompt from '../../components/account-prompt/AccountPrompt';
 
 export default function Results() {
   const styles = ResultsStyles();
@@ -14,6 +15,7 @@ export default function Results() {
     <ResultsDisplay />,
     <ResultsScoreDisplay />,
     <Email />,
+    <AccountPrompt />,
   ];
   const totalPages = components.length;
   const [currentPage, setCurrentPage] = useState(0);

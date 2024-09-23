@@ -1,16 +1,12 @@
-// import { useTheme } from '@mui/material/styles';
-
 const EmailStyles = () => {
-  // const theme = useTheme();
   const styles = {
     emailContainer: {
       width: '90%',
       maxWidth: '32rem',
-      height: '25rem',
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
-      margin: '2rem auto 1rem',
+      margin: '2rem auto',
     },
     heading: {
       color: '#202020',

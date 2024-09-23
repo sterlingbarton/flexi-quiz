@@ -1,10 +1,10 @@
 import { useContext } from 'react';
 import { QuizStateContext } from '../../context/QuizStateContext';
-import Welcome from '../welcome/Welcome';
-import HalfwayMarker from '../halfway-marker/HalfwayMarker';
-import LoadDisplay from '../load-display/LoadDisplay';
-import QuizLayout from '../quiz-layout/QuizLayout';
-import QuizGrid from '../quiz-grid/QuizGrid';
+import Welcome from '../../components/welcome/Welcome';
+import HalfwayMarker from '../../components/halfway-marker/HalfwayMarker';
+import LoadDisplay from '../../components/load-display/LoadDisplay';
+import QuizLayout from '../../components/quiz-layout/QuizLayout';
+import QuizGrid from '../../components/quiz-grid/QuizGrid';
 
 export default function Quiz() {
   const { quizState, isLoading } = useContext(QuizStateContext);

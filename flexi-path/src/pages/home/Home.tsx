@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { Box, Button, Typography } from '@mui/material';
-import Nav from '../nav/Nav';
-import VendorPortalBtn from '../buttons/vendor-portal-btn/VendorPortalBtn';
+import Nav from '../../components/nav/Nav';
+import VendorPortalBtn from '../../components/buttons/vendor-portal-btn/VendorPortalBtn';
 import hero from '../../assets/hero.png';
 import HomeStyles from './HomeStyles';
 
