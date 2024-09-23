@@ -1,9 +1,9 @@
 import { Routes, Route } from 'react-router-dom';
-import Quiz from './components/quiz/Quiz';
-import Results from './components/results/Results';
-import Home from './components/home/Home';
-import LogIn from './components/log-in/LogIn';
-import SignUp from './components/sign-up/SignUp';
+import Quiz from './pages/quiz/Quiz';
+import Results from './pages/results/Results';
+import Home from './pages/home/Home';
+import LogIn from './pages/log-in/LogIn';
+import SignUp from './pages/sign-up/SignUp';
 
 export default function App() {
   return (

@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { Container, Box } from '@mui/material';
 import ResultsStyles from './ResultsStyles';
-import ResultsDisplay from '../results-display/ResultsDisplay';
-import ResultsNavigation from '../results-navigation/ResultsNavigation';
-import ResultsScoreDisplay from '../results-score-display/ResultsScoreDisplay';
-import Nav from '../nav/Nav';
-import Email from '../email/Email';
+import ResultsDisplay from '../../components/results-display/ResultsDisplay';
+import ResultsNavigation from '../../components/results-navigation/ResultsNavigation';
+import ResultsScoreDisplay from '../../components/results-score-display/ResultsScoreDisplay';
+import Nav from '../../components/nav/Nav';
+import Email from '../../components/email/Email';
 
 export default function Results() {
   const styles = ResultsStyles();

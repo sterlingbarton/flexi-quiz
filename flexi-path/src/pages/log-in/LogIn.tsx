@@ -1,6 +1,6 @@
 import { Box, Button, Typography, TextField, Link } from '@mui/material';
-import VendorPortalBtn from '../buttons/vendor-portal-btn/VendorPortalBtn';
-import Nav from '../nav/Nav';
+import VendorPortalBtn from '../../components/buttons/vendor-portal-btn/VendorPortalBtn';
+import Nav from '../../components/nav/Nav';
 import googleLogo from '../../assets/google-logo.png';
 import facebookLogo from '../../assets/facebook-logo.png';
 import appleLogo from '../../assets/apple-logo.png';
