@@ -5,6 +5,7 @@ import ResultsDisplay from '../results-display/ResultsDisplay';
 import ResultsNavigation from '../results-navigation/ResultsNavigation';
 import ResultsScoreDisplay from '../results-score-display/ResultsScoreDisplay';
 import Nav from '../nav/Nav';
+import Email from '../email/Email';
 
 export default function Results() {
   const styles = ResultsStyles();
@@ -12,6 +13,7 @@ export default function Results() {
     // As more components are built, they will be added here
     <ResultsDisplay />,
     <ResultsScoreDisplay />,
+    <Email />,
   ];
   const totalPages = components.length;
   const [currentPage, setCurrentPage] = useState(0);
