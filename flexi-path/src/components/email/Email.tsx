@@ -11,9 +11,12 @@ import {
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import EmailStyles from './EmailStyles';
 
-export default function Email() {
-  const styles = EmailStyles();
+interface EmailProps {
+  onEmailSent: () => void;
+}
 
+export default function Email({ onEmailSent }: EmailProps) {
+  const styles = EmailStyles();
   const [isFocused, setIsFocused] = useState(false);
 
   return (
@@ -59,7 +62,12 @@ export default function Email() {
           label="Send me helpful tips and resources"
           sx={styles.checkbox}
         />
-        <Button type="submit" variant="contained" sx={styles.submitButton}>
+        <Button
+          // type="submit"
+          variant="contained"
+          sx={styles.submitButton}
+          onClick={onEmailSent}
+        >
           Send Results
         </Button>
       </Box>
