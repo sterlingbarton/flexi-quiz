@@ -7,6 +7,7 @@ type ResultsNavigationProps = {
   handleBack: () => void;
   renderDots: () => JSX.Element[];
   currentPage: number;
+  totalPages: number;
 };
 
 export default function ResultsNavigation({
@@ -14,6 +15,7 @@ export default function ResultsNavigation({
   handleBack,
   renderDots,
   currentPage,
+  totalPages,
 }: ResultsNavigationProps) {
   const styles = ResultsNavigationStyles();
 
@@ -23,7 +25,10 @@ export default function ResultsNavigation({
         variant="text"
         sx={{
           ...styles.resultsBackBtn,
-          visibility: currentPage < 1 ? 'hidden' : 'visible',
+          visibility:
+            currentPage < 1 || currentPage === totalPages - 1
+              ? 'hidden'
+              : 'visible',
         }}
         startIcon={<ArrowBackIcon />}
         onClick={handleBack}
@@ -33,7 +38,10 @@ export default function ResultsNavigation({
       <Box sx={styles.dotsContainer}>{renderDots()}</Box>
       <Button
         variant="contained"
-        sx={styles.resultsNextBtn}
+        sx={{
+          ...styles.resultsNextBtn,
+          visibility: currentPage === totalPages - 1 ? 'hidden' : 'visible',
+        }}
         onClick={handleNext}
       >
         Next

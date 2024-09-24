@@ -65,6 +65,7 @@ export default function Results() {
             handleNext={handleNext}
             renderDots={renderDots}
             currentPage={currentPage}
+            totalPages={totalPages}
           />
         </Container>
       </Box>
