@@ -11,13 +11,12 @@ import AccountPrompt from '../../components/account-prompt/AccountPrompt';
 export default function Results() {
   const styles = ResultsStyles();
 
-  const emailComponentIndex = 2;
   const [currentPage, setCurrentPage] = useState(0);
-  const [emailAction, setEmailAction] = useState<string | null>(null);
+  const [emailSendAction, setEmailSendAction] = useState(false);
 
   const onEmailSent = () => {
-    setEmailAction('sent');
-    alert('Coming soon - please continue');
+    setEmailSendAction(true);
+    alert('Coming soon - please continue by clicking the next button');
   };
 
   const components = [
@@ -25,11 +24,7 @@ export default function Results() {
     <ResultsDisplay />,
     <ResultsScoreDisplay />,
     <Email onEmailSent={onEmailSent} />,
-    emailAction === 'sent' ? (
-      <AccountPrompt />
-    ) : emailAction === 'skipped' ? (
-      <Box>Placeholder for Skipped</Box>
-    ) : null,
+    <AccountPrompt emailSendAction={emailSendAction} />,
   ];
   const totalPages = components.length;
 
@@ -46,17 +41,6 @@ export default function Results() {
   };
 
   const handleNext = () => {
-    if (currentPage === emailComponentIndex) {
-      if (emailAction === null) {
-        setEmailAction('skipped');
-        setCurrentPage(currentPage + 1);
-      }
-    }
-    if (currentPage === emailComponentIndex) {
-      if (emailAction === 'sent') {
-        setCurrentPage(currentPage + 1);
-      }
-    }
     if (currentPage < totalPages - 1) {
       setCurrentPage(currentPage + 1);
     } else if (currentPage === totalPages - 1) {
@@ -67,9 +51,6 @@ export default function Results() {
   const handleBack = () => {
     if (currentPage > 0) {
       setCurrentPage(currentPage - 1);
-      if (currentPage === emailComponentIndex + 1) {
-        setEmailAction(null);
-      }
     }
   };
 

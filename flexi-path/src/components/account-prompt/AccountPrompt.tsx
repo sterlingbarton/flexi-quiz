@@ -1,9 +1,14 @@
 import { Box, Typography, Button } from '@mui/material';
 import Subscribe from '../../assets/undraw_subscribe.png';
+import Education from '../../assets/undraw_education.png';
 import AccountPromptStyles from './AccountPromptStyles';
 import { useNavigate } from 'react-router-dom';
 
-export default function AccountPrompt() {
+interface AccountPromptProps {
+  emailSendAction: boolean;
+}
+
+export default function AccountPrompt({ emailSendAction }: AccountPromptProps) {
   const navigate = useNavigate();
   const styles = AccountPromptStyles();
 
@@ -16,10 +21,15 @@ export default function AccountPrompt() {
       <Typography component="h3" sx={styles.heading}>
         Just a moment...
       </Typography>
-      <Box component={'img'} src={Subscribe} sx={styles.img} />
+      <Box
+        component={'img'}
+        src={emailSendAction ? Subscribe : Education}
+        sx={styles.img}
+      />
       <Typography component="p" sx={styles.paragraph}>
-        We've just emailed you your results. Now, let's gather some personal
-        details to set up your account.
+        {emailSendAction
+          ? "We've just emailed you your results. Now, let's gather some personal details to set up your account."
+          : "You’ve completed the assessment to see your child's path recommendation. Now, let's gather some personal details to set up your account."}
       </Typography>
       <Button
         type="submit"
