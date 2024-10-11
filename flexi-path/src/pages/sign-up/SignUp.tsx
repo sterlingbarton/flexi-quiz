@@ -1,4 +1,5 @@
 import { Box, Button, Typography, TextField, Link } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import VendorPortalBtn from '../../components/buttons/vendor-portal-btn/VendorPortalBtn';
 import Nav from '../../components/nav/Nav';
 import googleLogo from '../../assets/google-logo.png';
@@ -7,7 +8,13 @@ import appleLogo from '../../assets/apple-logo.png';
 import SignUpStyles from './SignUpStyles';
 
 export default function LogIn() {
+  const navigate = useNavigate();
   const styles = SignUpStyles();
+
+  const handleCreateAccount = () => {
+    navigate('/create-account');
+  };
+
   return (
     <Box>
       <Nav />
@@ -65,7 +72,12 @@ export default function LogIn() {
               }}
             />
             {/* create account btn */}
-            <Button type="submit" variant="contained" sx={{ width: '100%' }}>
+            <Button
+              type="submit"
+              variant="contained"
+              sx={{ width: '100%' }}
+              onClick={handleCreateAccount}
+            >
               Create Account
             </Button>
           </Box>
