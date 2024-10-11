@@ -20,6 +20,7 @@ const ResultsStyles = () => {
       borderRadius: theme.shape,
       maxWidth: '51rem',
       minWidth: '20rem',
+      minHeight: '34rem',
       flexShrink: 0,
       boxShadow: '0px 4px 17.3px 1px rgba(0, 0, 0, 0.09)',
       display: 'flex',

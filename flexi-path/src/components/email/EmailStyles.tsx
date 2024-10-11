@@ -20,6 +20,7 @@ const EmailStyles = () => {
       fontWeight: 300,
       lineHeight: '121.017%',
       mb: '1.8rem',
+      textAlign: 'center',
     },
     sideNote: {
       color: '#808080',

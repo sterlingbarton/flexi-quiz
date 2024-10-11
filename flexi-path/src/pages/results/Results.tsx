@@ -17,6 +17,11 @@ export default function Results() {
   const onEmailSent = () => {
     setEmailSendAction(true);
     alert('Coming soon - please continue by clicking the next button');
+    // in this function i need something that essentially
+    // triggers the next button to be clicked with a
+    // seperate component for it. If next button is clicked
+    // without email being sent, a different component
+    // will show
   };
 
   const components = [
